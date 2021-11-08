@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #424242;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+}
+
+th, td {
+  border: 0.5px solid rgba(160, 158, 158, 0.479);
+  padding: 10px 15px;
+}
+
+.buttons {
+  padding: 30px;
+}
+  
+.btn {
+  margin-right: 8px;
+}

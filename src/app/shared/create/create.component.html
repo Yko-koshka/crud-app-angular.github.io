@@ -1,0 +1,53 @@
+<form [formGroup] ="form" (ngSubmit)="submit()" class="example-form">
+  
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td class="input"><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Фамилия</mat-label>
+        <input matInput placeholder="Филатова" formControlName="patronymic">
+      </mat-form-field></td>
+      <td class="input"><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Имя</mat-label>
+        <input matInput placeholder="Наталья" formControlName="name">
+      </mat-form-field></td>
+      <td class="input"><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Отчество</mat-label>
+        <input matInput placeholder="Олеговна" formControlName="lastName">
+      </mat-form-field></td>
+    </tr></table>
+
+    <div>
+      <ng-container formArrayName="cars">
+        <ng-container *ngFor="let carForm of cars.controls; let i = index">
+          <div [formGroupName]="i" class="example-full-dth inputs" cellspacing="0">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Номер</mat-label>
+              <input class="input" matInput placeholder="BC7286AE" formControlName="number">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Марка</mat-label>
+              <input class="input" matInput placeholder="KIA" formControlName="make">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Модель</mat-label>
+              <input class="input" matInput placeholder="Optima" formControlName="model">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Год</mat-label>
+              <input class="input" matInput #postalCode maxlength="4" placeholder="2019" formControlName="year">
+              <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+            </mat-form-field>
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)='deleteCar(i)'>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+      <button mat-raised-button color="primary" class="btn" type="button" (click)="addCar()">Добавить автомобиль</button>
+    </div>
+    
+    <div class="buttons">
+      
+      <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="form.invalid">Сохранить</button>
+      <button mat-raised-button color="primary" [routerLink]="['']"  class="btn" type="button">Назад</button>
+    </div>
+</form>

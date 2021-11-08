@@ -1,0 +1,36 @@
+.example-form {
+    padding: 30px 50px;
+}
+
+.example-full-width {
+    width: 100%;
+    margin-right: 8px;
+}
+
+td {
+    padding-right: 8px;
+}
+
+td.input {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding-right: 0px;
+}
+
+.inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    color: #fff;
+}
+
+.buttons {
+    padding: 30px 0;
+}
+
+.btn {
+    margin-right: 8px;
+}
