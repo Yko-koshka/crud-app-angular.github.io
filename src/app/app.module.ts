@@ -12,13 +12,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxAbstractControlAsModule } from 'ngx-abstract-control-as';
-import { CreateComponent } from './shared/create/create.component';
+import { UserComponent } from './shared/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TablePaginationComponent,
-    CreateComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

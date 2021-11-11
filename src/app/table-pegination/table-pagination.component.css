@@ -1,23 +1,25 @@
-table {
-  width: 100%;
-  margin: 0 auto;
-  background-color: #424242;
-  border-collapse: collapse;
-}
-
-th {
-  text-align: left;
-}
-
-th, td {
-  border: 0.5px solid rgba(160, 158, 158, 0.479);
-  padding: 10px 15px;
-}
-
 .buttons {
   padding: 30px;
 }
   
 .btn {
   margin-right: 8px;
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
 }

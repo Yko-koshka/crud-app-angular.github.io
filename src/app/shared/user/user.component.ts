@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { CrudAppService } from 'src/app/crud-app.service';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class CreateComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private router: Router, private fb:FormBuilder, public crudAppService:CrudAppService) {
+  constructor(private router: Router, private route: ActivatedRoute, private fb:FormBuilder, public crudAppService:CrudAppService) {
    }
 
   ngOnInit() {
@@ -55,6 +56,7 @@ export class CreateComponent implements OnInit {
     }
 
     const owner: OwnerEntity = {
+      id: this.form.value.id,
       patronymic: this.form.value.patronymic,
       name: this.form.value.name,
       lastName: this.form.value.lastName,
@@ -71,6 +73,7 @@ export class CreateComponent implements OnInit {
 }
 
 export interface OwnerEntity {
+  id: string,
   patronymic: string,
   name: string,
   lastName: string,

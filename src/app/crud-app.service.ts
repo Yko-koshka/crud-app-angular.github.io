@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {map} from 'rxjs/operators'
-import { OwnerEntity } from './shared/create/create.component';
+import { CarEntity, OwnerEntity } from './shared/user/user.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,16 @@ export class CrudAppService {
         ...response[key],
         id: key
       }))
+    }))
+  }
+
+  getById(id: string): Observable<OwnerEntity> {
+    return this.http.get<OwnerEntity>(`${environment.fbDbUrl}/owners/${id}.json`)
+    .pipe(map((owner: any) => {
+      return {
+        ...owner,
+        id,
+      }
     }))
   }
 

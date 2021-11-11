@@ -1,31 +1,49 @@
 
 <section>
   <div class="buttons">
-    <button mat-raised-button color="primary" [routerLink]="['/create']" class="btn">Добавить</button>
-    <button mat-raised-button color="primary" class="btn">Просмотр</button>
-    <button mat-raised-button color="primary" class="btn">Редактировать</button>
-    <button mat-raised-button color="warn" class="btn" >Удалить</button>
+    <button mat-raised-button color="primary" [routerLink]="['/user']" class="btn">Добавить</button>
+    <button mat-raised-button [disabled]="!selected" color="primary" class="btn">Просмотр</button>
+    <button mat-raised-button [disabled]="!selected" color="primary" class="btn">Редактировать</button>
+    <button mat-raised-button [disabled]="!selected" (click)="remove(selected?.id)" color="warn" class="btn">Удалить</button>
   </div>
 </section>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>№</th>
-      <th>Фамилия</th>
-      <th>Имя</th>
-      <th>Отчество</th>
-      <th>Количество автомобилей</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let owner of owners; let idx = index">
-      <td>{{ idx + 1 }}</td>
-      <td>{{ owner.patronymic }}</td>
-      <td>{{ owner.name }}</td>
-      <td>{{ owner.lastName }}</td>
-      <td>{{ owner?.cars?.length }}</td>
-    </tr>
-  </tbody>
+<table mat-table [dataSource]="owners" class="mat-elevation-z8 demo-table">
+  <!-- Position Column -->
+  <ng-container matColumnDef="№">
+    <th mat-header-cell *matHeaderCellDef>№</th>
+    <td mat-cell *matCellDef="let owner; let idx = index">{{idx + 1}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Фамилия">
+    <th mat-header-cell *matHeaderCellDef>Фамилия</th>
+    <td mat-cell *matCellDef="let owner">{{owner.patronymic}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Имя">
+    <th mat-header-cell *matHeaderCellDef>Имя</th>
+    <td mat-cell *matCellDef="let owner">{{owner.name}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Отчество">
+    <th mat-header-cell *matHeaderCellDef>Отчество</th>
+    <td mat-cell *matCellDef="let owner">{{owner.lastName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Количество автомобилей">
+    <th mat-header-cell *matHeaderCellDef>Количество автомобилей</th>
+    <td mat-cell *matCellDef="let owner">{{owner?.cars?.length}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+      mat-row
+      (click)="clickedRows.add(row); select(row);"
+      [class.demo-row-is-clicked]="selected?.id === row.id"
+      *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
 </table>
 

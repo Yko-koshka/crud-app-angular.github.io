@@ -1,7 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CrudAppService } from '../crud-app.service';
-import { OwnerEntity } from '../shared/create/create.component';
+import { OwnerEntity } from '../shared/user/user.component';
+
+export interface PeriodicElement {
+  id: string,
+  patronymic: string,
+  name: string,
+  lastName: string,
+  quantity: number,
+}
 
 @Component({
   selector: 'app-table-pagination',
@@ -9,6 +17,9 @@ import { OwnerEntity } from '../shared/create/create.component';
   styleUrls: ['./table-pagination.component.css']
 })
 export class TablePaginationComponent implements OnInit, OnDestroy {
+  displayedColumns = ['№', 'Фамилия', 'Имя', 'Отчество', 'Количество автомобилей']
+  clickedRows = new Set<PeriodicElement>();
+  selected!: PeriodicElement | null;
   owners: OwnerEntity[] = [];
   pSub: Subscription = new Subscription;
   constructor(public crudAppService: CrudAppService) {
@@ -21,16 +32,23 @@ export class TablePaginationComponent implements OnInit, OnDestroy {
     })
   }
 
-  select(id: string) {
+  select(data: PeriodicElement) {
+    if(this.selected?.id === data.id) {
+      this.selected = null;
+      return;
+    }
+    this.selected = data;
+    console.log(data);
   }
 
   
 
-  // remove(id: string) {
-  //   this.crudAppService.remove(id).subscribe(() => {
-  //     this.owners = this.owners.filter(owner => owner.id !== id)
-  //   })
-  // }
+  remove(id: string | undefined) {
+    if(id === undefined) return;
+    this.crudAppService.remove(id).subscribe(() => {
+      this.owners = this.owners.filter(owner => owner.id !== id)
+    })
+  }
 
   ngOnDestroy() {
     if (this.pSub) {
