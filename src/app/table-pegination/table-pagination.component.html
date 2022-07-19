@@ -1,9 +1,9 @@
 
 <section>
   <div class="buttons">
-    <button mat-raised-button color="primary" [routerLink]="['/user']" class="btn">Добавить</button>
-    <button mat-raised-button [disabled]="!selected" color="primary" class="btn">Просмотр</button>
-    <button mat-raised-button [disabled]="!selected" color="primary" class="btn">Редактировать</button>
+    <button mat-raised-button color="primary" [routerLink]="['/owner-form']" class="btn">Добавить</button>
+    <button mat-raised-button [disabled]="!selected" color="primary" [routerLink]="['/owner-form', selected?.id, 'view-owner']" class="btn">Просмотр</button>
+    <button mat-raised-button [disabled]="!selected" color="primary" [routerLink]="['/owner-form', selected?.id, 'edit-owner']" class="btn">Редактировать</button>
     <button mat-raised-button [disabled]="!selected" (click)="remove(selected?.id)" color="warn" class="btn">Удалить</button>
   </div>
 </section>

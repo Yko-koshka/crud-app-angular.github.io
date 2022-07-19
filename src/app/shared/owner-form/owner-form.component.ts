@@ -5,18 +5,19 @@ import { switchMap } from 'rxjs/operators';
 import { CrudAppService } from 'src/app/crud-app.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-owner-form',
+  templateUrl: './owner-form.component.html',
+  styleUrls: ['./owner-form.component.css']
 })
-export class UserComponent implements OnInit {
+export class OwnerFormComponent implements OnInit {
 
   form!: FormGroup;
+  
 
-  constructor(private router: Router, private route: ActivatedRoute, private fb:FormBuilder, public crudAppService:CrudAppService) {
-   }
+  constructor(private router: Router, private fb:FormBuilder, public crudAppService:CrudAppService) {}
 
   ngOnInit() {
+    
     this.form = this.fb.group({
       patronymic: ['', Validators.required],
       name: ['', Validators.required],
@@ -88,7 +89,4 @@ export interface CarEntity {
 }
 
 
-function owner(owner: any) {
-  throw new Error('Function not implemented.');
-}
 

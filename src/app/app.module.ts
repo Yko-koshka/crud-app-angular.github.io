@@ -12,13 +12,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxAbstractControlAsModule } from 'ngx-abstract-control-as';
-import { UserComponent } from './shared/user/user.component';
+import { OwnerFormComponent } from './shared/owner-form/owner-form.component';
+import { EditOwnerComponent } from './shared/edit-owner/edit-owner.component';
+import { ViewOwnerComponent } from './shared/view-owner/view-owner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TablePaginationComponent,
-    UserComponent,
+    OwnerFormComponent,
+    EditOwnerComponent,
+    ViewOwnerComponent,
   ],
   imports: [
     BrowserModule,

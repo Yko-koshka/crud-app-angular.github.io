@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CrudAppService } from '../crud-app.service';
-import { OwnerEntity } from '../shared/user/user.component';
+import { OwnerEntity } from '../shared/owner-form/owner-form.component';
 
 export interface PeriodicElement {
   id: string,
@@ -17,14 +17,17 @@ export interface PeriodicElement {
   styleUrls: ['./table-pagination.component.css']
 })
 export class TablePaginationComponent implements OnInit, OnDestroy {
+
   displayedColumns = ['№', 'Фамилия', 'Имя', 'Отчество', 'Количество автомобилей']
   clickedRows = new Set<PeriodicElement>();
   selected!: PeriodicElement | null;
+
   owners: OwnerEntity[] = [];
   pSub: Subscription = new Subscription;
-  constructor(public crudAppService: CrudAppService) {
-  }
 
+  constructor(public crudAppService: CrudAppService) {
+    
+  }
   ngOnInit() {
     this.crudAppService.getAll().subscribe(owners => {
       this.owners = owners;
@@ -40,8 +43,6 @@ export class TablePaginationComponent implements OnInit, OnDestroy {
     this.selected = data;
     console.log(data);
   }
-
-  
 
   remove(id: string | undefined) {
     if(id === undefined) return;

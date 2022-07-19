@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {map} from 'rxjs/operators'
-import { CarEntity, OwnerEntity } from './shared/user/user.component';
+import { OwnerEntity } from './shared/owner-form/owner-form.component';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +47,10 @@ export class CrudAppService {
 
   remove(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.fbDbUrl}/owners/${id}.json`)
+  }
+
+  update(owner: OwnerEntity): Observable<OwnerEntity> {
+    return this.http.patch<OwnerEntity>(`${environment.fbDbUrl}/owners/${owner.id}.json`, owner)
   }
 }
 
